@@ -164,3 +164,9 @@ if __name__ == '__main__':
     os.chdir(start_dir)
 ```
 
+### Zdsplode
+
+Archives that are downloaded are automatically extracted using an included
+function called `zdsplode`. A command line script for calling zdsplode is also
+included.
+
