@@ -45,15 +45,18 @@ a Python virtual environment.
 ### Configuration
 
 Options when running zdgrab can be configured through configuration files.  An
-example of the config file is given below.
+example of the config file is given below. If you have API access directly
+using your account, then set `mail` to your Zendesk account login. If your
+organization uses a shared account for utilities, then set `mail` to the
+utilities account and set `agent` to your Zendesk login.
 
     # ~/.zd.cfg
     [zd]
-    mail = you@example.com
+    mail = util_account@example.com
     password = dneib393fwEF3ifbsEXAMPLEdhb93dw343
     url = https://example.zendesk.com
     is_token = 1
-    agent = agent@example.com
+    agent = you@example.com
 
 ### Usage
 
