@@ -45,7 +45,7 @@ a Python virtual environment.
 ### Configuration
 
 Options when running zdgrab can be configured through configuration files.  An
-example of using two config files is given below.
+example of the config file is given below.
 
     # ~/.zd.cfg
     [zd]
