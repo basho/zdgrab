@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+
+import sys
+from zdgrab.zdsplode import zdsplode
+
+if __name__ == '__main__':
+    sys.exit(zdsplode(sys.argv[1]))
+
