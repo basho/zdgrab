@@ -178,6 +178,7 @@ def config(argv=None):
         'mail': None,
         'password': 'prompt',
         'is_token': False,
+        'is_command': False,
     }
 
     argp = argparse.ArgumentParser(
@@ -207,7 +208,8 @@ def config(argv=None):
         nargs='?', const=state['password'])
     argp.add_argument('-i', '--is-token', action='store_true', dest='is_token',
         help='Is token? Specify if password supplied a Zendesk token')
-
+    argp.add_argument('-i', '--is-command', action='store_true', dest='is_command',
+        help='Is command? Specify if password supplied should be evaluated by default shell')
     # Set argparse defaults with program defaults.
     # Skip password as it is argparse const, not argparse default
     argp.set_defaults(**dict((k, v) for k, v in state.iteritems() if k != 'password'))
@@ -251,7 +253,7 @@ def config(argv=None):
                                          repr(state['is_token']) ))
         zd = Zendesk(state['url'],
                     zendesk_username = state['mail'],
-                    zendesk_password = state['password'],
+                    zendesk_password = getpassword(state['password'], state['is_command']), 
                     use_api_token = state['is_token'],
                     api_version=2)
     else:
@@ -289,6 +291,16 @@ def config(argv=None):
             return 1
 
     return zd, state
+
+
+def getpassword(password,is_command):
+    if is_command is True:
+        import subprocess
+        output = subprocess.check_output(password, shell=True)
+        import string
+        return string.replace(output, '\n','')
+    else:
+        password
 
 def main(argv=None):
     zd, state = config(argv)

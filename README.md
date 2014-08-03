@@ -56,7 +56,12 @@ utilities account and set `agent` to your Zendesk login.
     password = dneib393fwEF3ifbsEXAMPLEdhb93dw343
     url = https://example.zendesk.com
     is_token = 1
+    is_command = 0
     agent = you@example.com
+
+#### Commmand evaluated password
+
+If is_command is set to 1, then whatever string was given for the password, will be evaluated as a command. This can be used when version controling one's dotfiles. A good example usage would be to use an external program such as keyring of gnome keyring manager to store all passwords. This enables you version control the ~/.zd.cfg file without fear of password or token disclosure.
 
 ### Usage
 
