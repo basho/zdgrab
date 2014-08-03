@@ -63,6 +63,12 @@ utilities account and set `agent` to your Zendesk login.
 
 If is_command is set to 1, then whatever string was given for the password, will be evaluated as a command. This can be used when version controling one's dotfiles. A good example usage would be to use an external program such as keyring of gnome keyring manager to store all passwords. This enables you version control the ~/.zd.cfg file without fear of password or token disclosure.
 
+An example of such a command (tested) would be `git push --set-upstream origin gitignore-and-cmd-for-password` where you had stored the passwork in the OSX keychain.
+
+```
+security find-generic-password -a 'zendesk-token' -w 2>&1 | tr -d '\n' ''
+```
+
 ### Usage
 
 The script can be invoked with the following synopsis:
