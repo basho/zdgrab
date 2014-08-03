@@ -3,3 +3,6 @@
 .DS_Store
 *.swp
 *.pyc
+build/
+dist/
+zdgrab.egg-info/
