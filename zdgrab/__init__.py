@@ -7,7 +7,7 @@ import configparser
 
 from zdgrab.zdsplode import zdsplode
 
-def zdgrab(zd, agent='me', ticket_ids=None,
+def zdgrab(zd, agent='me', ticket_ids=None, organization=None,
            work_dir=os.path.join(os.path.expanduser('~'), 'zdgrab'),
            verbose=False):
 
@@ -34,6 +34,8 @@ def zdgrab(zd, agent='me', ticket_ids=None,
     if ticket_ids:
         # ticket_ids given, query for those
         response = zd.search(query=' '.join(['ticket_id:' + s for s in map(str,ticket_ids)]))
+    elif organization:
+
     else:
         # List of tickets not given. Get all of the attachments for all of this
         # user's open tickets.
@@ -188,6 +190,9 @@ def config(argv=None):
 
     argp.add_argument('-t', action=UnicodeStore, dest='tickets',
         help='Ticket(s) to grab attachments (default: all of your open tickets)')
+
+    argp.add_argument('-o', action=UnicodeStore, dest='organization',
+        help='Organization for which to grab Ticket(s) and attachments')
 
     argp.add_argument('-c', action=UnicodeStore, dest='config_file',
         help='Configuration file (overrides ~/.zd.cfg)')
