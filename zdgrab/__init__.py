@@ -38,7 +38,8 @@ def zdgrab(zd, agent='me', ticket_ids=None,
                         print "Query: {}".format(query) 
         #response = zd.search(query=query)
         res = zd.show_many_tickets(ids=query)
-        print('{}'.format(res))
+        if verbose:
+                        print('{}'.format(res))
         response = {}
         response['count'] = 0
         response['results'] = []
