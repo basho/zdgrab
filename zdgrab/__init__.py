@@ -33,7 +33,23 @@ def zdgrab(zd, agent='me', ticket_ids=None,
 
     if ticket_ids:
         # ticket_ids given, query for those
-        response = zd.search(query=' '.join(['ticket_id:' + s for s in map(str,ticket_ids)]))
+        query=','.join([s for s in map(str,ticket_ids)])
+        if verbose:
+                        print "Query: {}".format(query) 
+        #response = zd.search(query=query)
+        res = zd.show_many_tickets(ids=query)
+        if verbose:
+                        print('{}'.format(res))
+        response = {}
+        response['count'] = 0
+        response['results'] = []
+        for resp in res['tickets']:
+            response['count'] += 1
+            resp['result_type'] = 'ticket'
+            response['results'].append(resp)
+            if verbose:
+                print('found: {}'.format(resp['id']))
+
     else:
         # List of tickets not given. Get all of the attachments for all of this
         # user's open tickets.
