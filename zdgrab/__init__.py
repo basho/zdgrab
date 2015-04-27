@@ -68,7 +68,6 @@ def zdgrab(zd, agent='me', ticket_ids=None,
                              zd.zendesk_password))
 
     # Get the attachments from the given zendesk tickets
-    print('ticket_ids: {}'.format(ticket_ids))
     for ticket in response['results']:
         if ticket['result_type'] != 'ticket':
             # This is not actually a ticket. Weird. Skip it.
